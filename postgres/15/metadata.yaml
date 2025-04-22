@@ -1,0 +1,13 @@
+name: postgres
+version: 15
+type: manifest
+description: PostgreSQL 15 with persistence.
+port: 5432
+requiresStorage: true
+defaultStorage: 1Gi
+credentials:
+  username: postgres
+  password: postgres
+ingress:
+  enabled: true
+  host: postgres.local

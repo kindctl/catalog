@@ -1,0 +1,22 @@
+namespace: postgres
+serviceName: postgres
+image: postgres
+imageTag: 15
+replicas: 1
+port: 5432
+env:
+  POSTGRES_USER:
+    secret: true
+    value: postgres
+  POSTGRES_PASSWORD:
+    secret: true
+    value: root
+storage:
+  enabled: true
+  size: 10Gi
+service:
+  enabled: true
+  type: ClusterIP
+  port: 5432
+ingress:
+  enabled: false

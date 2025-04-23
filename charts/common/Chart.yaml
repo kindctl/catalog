@@ -1,0 +1,4 @@
+apiVersion: v2
+name: common
+description: A common Helm chart for deploying Kubernetes services
+version: 0.1.0

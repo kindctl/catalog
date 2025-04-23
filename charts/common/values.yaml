@@ -1,0 +1,18 @@
+# Default values for the common chart
+namespace: default
+serviceName: ""
+image: ""
+imageTag: latest
+replicas: 1
+port: 80
+env: {}
+storage:
+  enabled: false
+  size: 10Gi
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: false
+  host: ""

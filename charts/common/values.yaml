@@ -4,7 +4,7 @@ image: ""
 imageTag: latest
 replicas: 1
 port: 80
-env: {}
+env: []
 storage:
   enabled: false
   storageClass: standard

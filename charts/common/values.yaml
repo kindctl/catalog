@@ -1,4 +1,3 @@
-# Default values for the common chart
 namespace: default
 serviceName: ""
 image: ""
@@ -8,7 +7,8 @@ port: 80
 env: {}
 storage:
   enabled: false
-  size: 10Gi
+  storageClass: standard
+  size: 2Gi
 service:
   enabled: true
   type: ClusterIP

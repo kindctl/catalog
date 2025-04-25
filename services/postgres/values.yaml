@@ -3,14 +3,11 @@ serviceName: postgres
 image: postgres
 imageTag: 15
 replicas: 1
-port: 5432
 env:
-  POSTGRES_USER:
-    secret: true
-    value: postgres
-  POSTGRES_PASSWORD:
-    secret: true
-    value: root
+  MY_CUSTOM_ENV: mycustomValue
+  secrets:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
 storage:
   enabled: true
   size: 10Gi

@@ -4,7 +4,6 @@ image: postgres
 imageTag: 15
 replicas: 1
 env:
-  MY_CUSTOM_ENV: mycustomValue
   secrets:
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: postgres

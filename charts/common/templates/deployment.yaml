@@ -3,6 +3,12 @@ kind: Deployment
 metadata:
   name: {{ .Values.serviceName }}
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.serviceName }}
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: {{ .Values.serviceName }}
+    meta.helm.sh/release-namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:

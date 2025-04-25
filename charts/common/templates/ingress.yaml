@@ -4,7 +4,12 @@ kind: Ingress
 metadata:
   name: {{ .Values.serviceName }}-ingress
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.serviceName }}
+    app.kubernetes.io/managed-by: Helm
   annotations:
+    meta.helm.sh/release-name: {{ .Values.serviceName }}
+    meta.helm.sh/release-namespace: {{ .Values.namespace }}
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}

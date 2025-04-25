@@ -4,9 +4,8 @@ image: postgres
 imageTag: 15
 replicas: 1
 env:
-  secrets:
-    POSTGRES_USER: postgres
-    POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
 storage:
   enabled: true
   size: 10Gi

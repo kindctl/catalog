@@ -18,4 +18,7 @@ spec:
   {{- if .Values.storage.storageClass }}
   storageClassName: {{ .Values.storage.storageClass }}
   {{- end }}
+  hostPath:
+    path: /mnt/data/{{ .Values.serviceName }}
+    type: DirectoryOrCreate
 {{- end }}

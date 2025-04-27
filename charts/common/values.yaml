@@ -7,7 +7,7 @@ port: 80
 env: []
 storage:
   enabled: false
-  storageClass: standard
+  storageClass: ""
   size: 2Gi
 service:
   enabled: true

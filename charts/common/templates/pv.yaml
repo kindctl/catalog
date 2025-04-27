@@ -15,9 +15,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  {{- if .Values.storage.storageClass }}
-  storageClassName: {{ .Values.storage.storageClass }}
-  {{- end }}
+  storageClassName: ""
   hostPath:
     path: /mnt/data/{{ .Values.serviceName }}
     type: DirectoryOrCreate

@@ -1,0 +1,11 @@
+auth:
+  username: airflow
+  password: airflow
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - host: airflow.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

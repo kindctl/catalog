@@ -40,7 +40,7 @@ spec:
             {{- end }}
           {{- end }}
           {{- if .Values.command }}
-          command: {{ .Values.command | toJson }}
+          command: {{ .Values.command }}
           {{- end }}
           {{- if .Values.storage.enabled }}
           volumeMounts:

@@ -28,6 +28,8 @@ service:
 ingress:
   enabled: true
   host: airflow.local
-command: ["standalone"]
+command:
+  - "airflow"
+  - "standalone"
 serviceAccount:
   enabled: true

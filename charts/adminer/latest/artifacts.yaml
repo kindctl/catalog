@@ -1,0 +1,5 @@
+name: adminer
+repo: ectobit
+url: https://charts.ectobit.com
+chart: ectobit/adminer
+version: 0.1.8

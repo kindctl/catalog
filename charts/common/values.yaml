@@ -16,3 +16,5 @@ service:
 ingress:
   enabled: false
   host: ""
+serviceAccount:
+  enabled: true

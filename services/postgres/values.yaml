@@ -16,3 +16,5 @@ service:
   port: 5432
 ingress:
   enabled: false
+serviceAccount:
+  enabled: false

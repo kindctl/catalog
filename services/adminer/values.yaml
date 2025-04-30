@@ -14,3 +14,5 @@ service:
 ingress:
   enabled: true
   host: adminer.local
+serviceAccount:
+  enabled: false

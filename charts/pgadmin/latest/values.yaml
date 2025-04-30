@@ -1,0 +1,15 @@
+image:
+  repository: adminer
+  tag: latest
+  pullPolicy: IfNotPresent
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - host: pgadmin.local
+      paths:
+        - path: /
+          pathType: Prefix
+env:
+  email: admin@kindctl.com
+  password: admin

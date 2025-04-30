@@ -1,0 +1,5 @@
+name: pgadmin
+repo: runix
+url: https://helm.runix.net/
+chart: runix/pgadmin4
+version: 1.42.0

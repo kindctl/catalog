@@ -1,7 +1,7 @@
 namespace: airflow
 serviceName: airflow
 image: apache/airflow
-imageTag: "3.0.0"
+imageTag: latest
 replicas: 1
 port: 8080
 env:
@@ -26,5 +26,6 @@ service:
 ingress:
   enabled: true
   host: airflow.local
+command: ["standalone"]
 serviceAccount:
   enabled: true

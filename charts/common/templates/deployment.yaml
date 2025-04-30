@@ -39,6 +39,9 @@ spec:
             {{- end }}
             {{- end }}
           {{- end }}
+          {{- if .Values.command }}
+          command: {{ .Values.command | toJson }}
+          {{- end }}
           {{- if .Values.storage.enabled }}
           volumeMounts:
             - name: storage

@@ -18,3 +18,4 @@ ingress:
   host: ""
 serviceAccount:
   enabled: true
+command: [""]

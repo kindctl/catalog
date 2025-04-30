@@ -1,0 +1,21 @@
+auth:
+  postgresPassword: "postgres"
+  username: "postgres"
+  password: "postgres"
+  database: "postgres"
+
+primary:
+  persistence:
+    enabled: true
+    size: 10Gi
+    accessModes:
+      - ReadWriteOnce
+    persistentVolumeReclaimPolicy: Retain
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 5
+    periodSeconds: 5

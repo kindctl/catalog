@@ -1,0 +1,6 @@
+artifacts:
+  name: bitnami
+  url: https://charts.bitnami.com/bitnami
+  chart: bitnami/postgresql
+  version: 15.5.38
+

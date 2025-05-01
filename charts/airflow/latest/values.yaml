@@ -1,6 +1,14 @@
+airflow:
+  executor: CeleryExecutor
+  username: admin
+  password: admin
+  loadExamples: true
+
 auth:
   username: airflow
   password: airflow
+web:
+  baseUrl: airflow.local
 ingress:
   enabled: true
   ingressClassName: nginx

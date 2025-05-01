@@ -1,5 +1,5 @@
 airflow:
-  executor: CeleryExecutor
+  executor: LocalExecutor
   username: admin
   password: admin
   loadExamples: true
@@ -12,12 +12,10 @@ web:
 ingress:
   enabled: true
   ingressClassName: nginx
-  hosts:
-    - host: airflow.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  hostname: airflow.local
 
+postgresql:
+  enabled: false
 externalDatabase:
   host: postgres-postgresql.postgres
   user: postgres

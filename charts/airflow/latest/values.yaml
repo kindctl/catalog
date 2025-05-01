@@ -15,7 +15,7 @@ loadExamples: true # Disable example DAGs in production
 
 # DAGs and Plugins
 dags:
-  enabled: true # Enable if loading DAGs from ConfigMap or Git
+  enabled: false # Enable if loading DAGs from ConfigMap or Git
 #  existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
 #  repositories:
 #    - repository: "https://github.com/your-org/your-dags-repo"
@@ -36,14 +36,6 @@ ingress:
   hostname: "airflow.local" # Your domain
   path: "/"
   ingressClassName: "nginx" # Or your preferred Ingress controller
-
-# RBAC
-rbac:
-  create: true # Enable if workers need Kubernetes API access (e.g., KubernetesExecutor)
-  rules:
-    - apiGroups: [""]
-      resources: ["pods", "pods/log"]
-      verbs: ["get", "list", "create", "delete"]
 
 postgresql:
   enabled: false

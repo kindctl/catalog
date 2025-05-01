@@ -1,0 +1,5 @@
+name: redis
+repo: bitnami
+url: https://charts.bitnami.com/bitnami
+chart: bitnami/redis
+version: 20.13.4

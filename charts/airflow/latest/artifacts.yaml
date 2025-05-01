@@ -7,3 +7,9 @@ version: 23.0.1
 dependencies:
   - postgres
   - redis
+
+resources:
+  configmap:
+    message: "Airflow dags local path? "
+    name: dags.existingConfigmap
+    value: "airflow-dags"

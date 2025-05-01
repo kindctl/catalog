@@ -1,23 +1,95 @@
-airflow:
-  executor: LocalExecutor
-  username: admin
-  password: admin
-  loadExamples: true
-
 auth:
-  username: airflow
-  password: airflow
+  username: "admin" # Change to your desired admin username
+  password: "admin" # Set a strong password or use existingSecret
+  fernetKey: "z3_Wy_BmW8g2rYdbxZl0Nuf1JyfgFzOkn_rwDJIj_E4=" # Generate a Fernet key (e.g., via `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`)
+  secretKey: "LaF21zITR7Iikq6sEzvotbHDZBEf7JTpQN6TT2rwB94=" # Generate a secret key for Flask (e.g., via `openssl rand -base64 32`)
+  jwtSecretKey: "peHj5O1Smbj9Q+CMIJGktlYmbwYlPadKjrr0SwFc6sWV+q933UlwleXl5mRizKL3ZC61hrRU9rD5I2aVxI2V8Q==" # Generate a JWT secret key if using JWT
+
+# Airflow configuration
+executor: LocalExecutor # Use CeleryExecutor for distributed tasks; change to KubernetesExecutor if needed
+loadExamples: true # Disable example DAGs in production
+#configuration: {} # Customize Airflow settings if needed, e.g., core.dags_folder
+#overrideConfiguration: {} # Override specific settings
+#localSettings: "" # Add custom airflow_local_settings.py if needed
+#existingConfigmap: "" # Use if storing config in a ConfigMap
+
+# DAGs and Plugins
+dags:
+  enabled: true # Enable if loading DAGs from ConfigMap or Git
+  existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
+  repositories:
+    - repository: "https://github.com/your-org/your-dags-repo"
+      branch: "main"
+      name: "dags"
+      path: "/dags"
+  sshKey: "" # Provide SSH key for private repos or use existingSshKeySecret
+  existingSshKeySecrets: "dags-ssh-secret" # Secret containing SSH key
+  existingSshKeySecretKey: "ssh-key" # Key name in the secret
+
+plugins:
+  enabled: false # Enable if loading custom plugins
+  repositories: [] # Configure Git repos for plugins if needed
+
+# Airflow webserver
 web:
-  baseUrl: airflow.local
+  baseUrl: "http://airflow.local" # Set to your external URL
+
+
 ingress:
   enabled: true
-  ingressClassName: nginx
-  hostname: airflow.local
+  hostname: "airflow.local" # Your domain
+  path: "/"
+  ingressClassName: "nginx" # Or your preferred Ingress controller
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" # For TLS certificates
 
+# RBAC
+rbac:
+  create: true # Enable if workers need Kubernetes API access (e.g., KubernetesExecutor)
+  rules:
+    - apiGroups: [""]
+      resources: ["pods", "pods/log"]
+      verbs: ["get", "list", "create", "delete"]
+
+# PostgreSQL (internal)
 postgresql:
-  enabled: false
+  enabled: false # Disable if using external DB
+  auth:
+    username: "postgres"
+    password: "postgres" # Set or use existingSecret
+    database: "airflow"
+
+# External PostgreSQL (if postgresql.enabled=false)
 externalDatabase:
-  host: postgres-postgresql.postgres
-  user: postgres
-  password: postgres
-  database: airflow
+  host: "postgres.example.com"
+  port: 5432
+  user: "bn_airflow"
+  database: "bitnami_airflow"
+  existingSecret: "external-db-secrets"
+  existingSecretPasswordKey: "password"
+
+# Redis (internal)
+redis:
+  enabled: true # Disable if using external Redis
+  auth:
+    enabled: true
+    password: "" # Set or use existingSecret
+    existingSecret: "airflow-redis-secrets"
+  architecture: standalone
+  master:
+    resourcesPreset: "nano"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+
+# External Redis (if redis.enabled=false)
+externalRedis:
+  host: "redis.example.com"
+  port: 6379
+  password: ""
+  existingSecret: "external-redis-secrets"
+  existingSecretPasswordKey: "password"

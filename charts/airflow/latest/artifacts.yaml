@@ -3,3 +3,7 @@ repo: bitnami
 url: https://charts.bitnami.com/bitnami
 chart: bitnami/airflow
 version: 23.0.1
+
+dependencies:
+  - postgres
+  - redis

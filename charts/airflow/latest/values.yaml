@@ -16,19 +16,15 @@ loadExamples: true # Disable example DAGs in production
 # DAGs and Plugins
 dags:
   enabled: true # Enable if loading DAGs from ConfigMap or Git
-  existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
-  repositories:
-    - repository: "https://github.com/your-org/your-dags-repo"
-      branch: "main"
-      name: "dags"
-      path: "/dags"
-  sshKey: "" # Provide SSH key for private repos or use existingSshKeySecret
-  existingSshKeySecrets: "dags-ssh-secret" # Secret containing SSH key
-  existingSshKeySecretKey: "ssh-key" # Key name in the secret
-
-plugins:
-  enabled: false # Enable if loading custom plugins
-  repositories: [] # Configure Git repos for plugins if needed
+#  existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
+#  repositories:
+#    - repository: "https://github.com/your-org/your-dags-repo"
+#      branch: "main"
+#      name: "dags"
+#      path: "/dags"
+#  sshKey: "" # Provide SSH key for private repos or use existingSshKeySecret
+#  existingSshKeySecrets: "dags-ssh-secret" # Secret containing SSH key
+#  existingSshKeySecretKey: "ssh-key" # Key name in the secret
 
 # Airflow webserver
 web:
@@ -40,8 +36,6 @@ ingress:
   hostname: "airflow.local" # Your domain
   path: "/"
   ingressClassName: "nginx" # Or your preferred Ingress controller
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod" # For TLS certificates
 
 # RBAC
 rbac:
@@ -51,45 +45,23 @@ rbac:
       resources: ["pods", "pods/log"]
       verbs: ["get", "list", "create", "delete"]
 
-# PostgreSQL (internal)
 postgresql:
-  enabled: false # Disable if using external DB
-  auth:
-    username: "postgres"
-    password: "postgres" # Set or use existingSecret
-    database: "airflow"
+  enabled: false
 
 # External PostgreSQL (if postgresql.enabled=false)
 externalDatabase:
-  host: "postgres.example.com"
+  host: "postgres-postgresql.postgres.svc.cluster.local"
   port: 5432
-  user: "bn_airflow"
-  database: "bitnami_airflow"
-  existingSecret: "external-db-secrets"
-  existingSecretPasswordKey: "password"
+  user: "postgres"
+  database: "airflow"
+  password: "password"
 
 # Redis (internal)
 redis:
-  enabled: true # Disable if using external Redis
-  auth:
-    enabled: true
-    password: "" # Set or use existingSecret
-    existingSecret: "airflow-redis-secrets"
-  architecture: standalone
-  master:
-    resourcesPreset: "nano"
-    resources:
-      requests:
-        cpu: "100m"
-        memory: "128Mi"
-      limits:
-        cpu: "200m"
-        memory: "256Mi"
+  enabled: false
 
 # External Redis (if redis.enabled=false)
 externalRedis:
-  host: "redis.example.com"
+  host: "redis-master.redis.svc.cluster.local"
   port: 6379
-  password: ""
-  existingSecret: "external-redis-secrets"
-  existingSecretPasswordKey: "password"
+  password: "admin" # Set to your Redis password

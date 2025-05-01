@@ -10,6 +10,6 @@ dependencies:
 
 resources:
   configmap:
-    message: "Airflow dags local path? "
-    name: dags.existingConfigmap
-    value: "airflow-dags"
+    message: "📁 Enter the path to your DAGs folder:"
+    key: dags.existingConfigmap
+    name: "airflow-dags"

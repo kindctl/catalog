@@ -17,6 +17,7 @@ loadExamples: true # Disable example DAGs in production
 dags:
   enabled: true # Enable if loading DAGs from ConfigMap or Git
   existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
+  repositories: [] # Uncomment and configure if using Git repositories
 #  repositories:
 #    - repository: "https://github.com/your-org/your-dags-repo"
 #      branch: "main"

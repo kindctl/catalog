@@ -13,19 +13,15 @@ loadExamples: true # Disable example DAGs in production
 #localSettings: "" # Add custom airflow_local_settings.py if needed
 #existingConfigmap: "" # Use if storing config in a ConfigMap
 
-# DAGs and Plugins
-dags:
-  enabled: true # Enable if loading DAGs from ConfigMap or Git
-  existingConfigmap: "" # Set to a ConfigMap name if storing DAGs
-  repositories: [] # Uncomment and configure if using Git repositories
-#  repositories:
-#    - repository: "https://github.com/your-org/your-dags-repo"
-#      branch: "main"
-#      name: "dags"
-#      path: "/dags"
-#  sshKey: "" # Provide SSH key for private repos or use existingSshKeySecret
-#  existingSshKeySecrets: "dags-ssh-secret" # Secret containing SSH key
-#  existingSshKeySecretKey: "ssh-key" # Key name in the secret
+extraVolumeMounts:
+  - name: projects
+    mountPath: /opt/airflow
+    readOnly: false
+
+extraVolumes:
+  - name: projects
+    hostPath: ""
+    type: Directory
 
 # Airflow webserver
 web:

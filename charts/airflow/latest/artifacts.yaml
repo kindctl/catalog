@@ -8,8 +8,13 @@ dependencies:
   - postgres
   - redis
 
-resources:
-  configmap:
-    message: "📁 Enter the path to your DAGs folder:"
-    key: dags.existingConfigmap
-    name: "airflow-dags"
+#resources:
+#  configmap:
+#    message: "📁 Enter the path to your DAGs folder:"
+#    key: dags.existingConfigmap
+#    name: "airflow-dags"
+
+valueOverrides:
+    - name: "📁 Enter the path to your DAGs folder:"
+      key: extraVolumes.hostPath
+      default: ""

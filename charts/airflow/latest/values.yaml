@@ -20,8 +20,9 @@ extraVolumeMounts:
 
 extraVolumes:
   - name: projects
-    hostPath: ""
-    type: Directory
+    hostPath:
+      path: ""
+      type: Directory
 
 # Airflow webserver
 web:

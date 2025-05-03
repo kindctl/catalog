@@ -16,5 +16,5 @@ dependencies:
 
 valueOverrides:
     - name: "📁 Enter the path to your DAGs folder:"
-      key: extraVolumes.hostPath
+      key: extraVolumes.0.hostPath
       default: ""

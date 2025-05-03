@@ -21,8 +21,7 @@ extraVolumeMounts:
 extraVolumes:
   - name: projects
     hostPath:
-      path: ""
-      type: Directory
+      path: "" # Path to your local DAGs folder
 
 # Airflow webserver
 web:

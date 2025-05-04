@@ -1,9 +1,9 @@
 auth:
   username: "admin" # Change to your desired admin username
   password: "admin" # Set a strong password or use existingSecret
-  fernetKey: "z3_Wy_BmW8g2rYdbxZl0Nuf1JyfgFzOkn_rwDJIj_E4=" # Generate a Fernet key (e.g., via `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`)
-  secretKey: "LaF21zITR7Iikq6sEzvotbHDZBEf7JTpQN6TT2rwB94=" # Generate a secret key for Flask (e.g., via `openssl rand -base64 32`)
-  jwtSecretKey: "peHj5O1Smbj9Q+CMIJGktlYmbwYlPadKjrr0SwFc6sWV+q933UlwleXl5mRizKL3ZC61hrRU9rD5I2aVxI2V8Q==" # Generate a JWT secret key if using JWT
+  fernetKey: "" # Generate a Fernet key (e.g., via `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`)
+  secretKey: "" # Generate a secret key for Flask (e.g., via `openssl rand -base64 32`)
+  jwtSecretKey: "" # Generate a JWT secret key if using JWT
 
 # Airflow configuration
 executor: LocalExecutor # Use CeleryExecutor for distributed tasks; change to KubernetesExecutor if needed
@@ -42,8 +42,8 @@ externalDatabase:
   host: "postgres-postgresql.postgres.svc.cluster.local"
   port: 5432
   user: "postgres"
-  database: "airflow"
-  password: "password"
+  database: "postgres"
+  password: "postgres"
 
 # Redis (internal)
 redis:

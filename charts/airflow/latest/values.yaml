@@ -37,7 +37,7 @@ externalDatabase:
   host: "postgres-postgresql.postgres.svc.cluster.local"
   port: 5432
   user: "postgres"
-  database: "postgres"
+  database: "airflow"
   password: "postgres"
 
 # Redis (internal)

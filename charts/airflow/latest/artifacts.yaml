@@ -20,7 +20,7 @@ prompts:
 
 executables:
   - name: Fern Key
-    command: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+    command: python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
     message: "🔑 Generating a Fernet key for Airflow authentication..."
     key: auth.fernetKey
   - name: Secret Key
@@ -30,3 +30,4 @@ executables:
   - name: JWT Secret Key
     command: openssl rand -base64 32
     message: "🔑 Generate a JWT secret key for Airflow authentication..."
+    key: auth.jwtSecretKey

@@ -15,7 +15,7 @@ loadExamples: true # Disable example DAGs in production
 
 extraVolumeMounts:
   - name: projects
-    mountPath: /opt/airflow
+    mountPath: /opt/bitnami/airflow
     readOnly: false
 
 extraVolumes:
@@ -23,15 +23,10 @@ extraVolumes:
     hostPath:
       path: "" # Path to your local DAGs folder
 
-# Airflow webserver
-web:
-  baseUrl: "http://airflow.local" # Set to your external URL
-
 
 ingress:
   enabled: true
   hostname: "airflow.local" # Your domain
-  path: "/"
   ingressClassName: "nginx" # Or your preferred Ingress controller
 
 postgresql:

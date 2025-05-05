@@ -34,7 +34,7 @@ postgresql:
 
 # External PostgreSQL (if postgresql.enabled=false)
 externalDatabase:
-  host: "postgres-postgresql.postgres.svc.cluster.local"
+  host: "postgres-postgresql.postgres"
   port: 5432
   user: "postgres"
   database: "airflow"
@@ -46,6 +46,6 @@ redis:
 
 # External Redis (if redis.enabled=false)
 externalRedis:
-  host: "redis-master.redis.svc.cluster.local"
+  host: "redis-master.redis"
   port: 6379
   password: "admin" # Set to your Redis password

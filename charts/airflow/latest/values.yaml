@@ -11,13 +11,6 @@ ingress:
         - path: /
           pathType: Prefix
 
-
-env:
-  - name: AIRFLOW__CORE__FERNET_KEY
-    value: ""
-  - name: AIRFLOW__WEBSERVER__SECRET_KEY
-    value: ""
-
 # External Postgres
 data:
   metadataConnection:

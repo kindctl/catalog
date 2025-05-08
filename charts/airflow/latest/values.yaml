@@ -29,19 +29,19 @@ ingress:
   hostname: airflow.local
   ingressClassName: nginx # Or your preferred Ingress controller
 
-postgresql:
-  enabled: false
-
-# External PostgreSQL (if postgresql.enabled=false)
-externalDatabase:
-  sqlConnection: postgresql://postgres:postgres@postgres-postgresql.postgres:5432/bitnami_airflow
-
-# Redis (internal)
-redis:
-  enabled: false
-
-# External Redis (if redis.enabled=false)
-externalRedis:
-  host: redis-master.redis
-  port: 6379
-  password: admin # Set to your Redis password
+#postgresql:
+#  enabled: false
+#
+## External PostgreSQL (if postgresql.enabled=false)
+#externalDatabase:
+#  sqlConnection: postgresql://postgres:postgres@postgres-postgresql.postgres:5432/bitnami_airflow
+#
+## Redis (internal)
+#redis:
+#  enabled: false
+#
+## External Redis (if redis.enabled=false)
+#externalRedis:
+#  host: redis-master.redis
+#  port: 6379
+#  password: admin # Set to your Redis password

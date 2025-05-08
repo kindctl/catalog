@@ -1,8 +1,8 @@
 name: airflow
-repo: apache-airflow
-url: https://airflow.apache.org
-chart: apache-airflow/airflow
-version: 1.16.0
+repo: bitnami
+url: https://charts.bitnami.com/bitnami
+chart: bitnami/airflow
+version: 24.0.0
 
 dependencies:
   - postgres

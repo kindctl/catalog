@@ -22,11 +22,11 @@ executables:
   - name: FernKey
     command: openssl rand -base64 32
     message: "🔑 Generating a Fernet key for Airflow authentication..."
-    key: env.0.value.AIRFLOW__CORE__FERNET_KEY
+    key: env.0.value
   - name: SecretKey
     command: openssl rand -base64 32
     message: "🔑 Generating a secret key for WebApp..."
-    key: env.1.value.AIRFLOW__WEBSERVER__SECRET_KEY
+    key: env.1.value
 #  - name: JWT Secret Key
 #    command: openssl rand -base64 32
 #    message: "🔑 Generate a JWT secret key for Airflow authentication..."

@@ -1,5 +1,18 @@
 executor: KubernetesExecutor
 
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: airflow.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+
 # External Postgres
 data:
   metadataConnection:

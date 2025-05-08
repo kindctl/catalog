@@ -1,4 +1,3 @@
-global:
-  redis:
-    password: "admin"
+auth:
+  enabled: false
 architecture: standalone

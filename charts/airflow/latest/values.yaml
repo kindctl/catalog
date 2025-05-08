@@ -1,65 +1,29 @@
-executor: KubernetesExecutor
-
-ingress:
-  enabled: true
-  ingressClassName: nginx
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  hosts:
-    - host: airflow.local
-      paths:
-        - path: /
-          pathType: Prefix
-
-# External Postgres
-data:
-  metadataConnection:
-    user: postgres
-    pass: postgres
-    protocol: postgresql
-    host: postgres-postgresql.postgres
-    port: 5432
-    db: airflow
-
-# External Redis
-externalRedis:
-  enabled: true
-  host: redis-master.redis
-  port: 6379
+auth:
+  username: admin
   password: admin
+  fernetKey: ""
+  secretKey: ""
+  jwtSecretKey: ""
 
-# Disable internal Postgres and Redis
+executor: CeleryExecutor
+loadExamples: false
+
+dags:
+  enabled: true
+  existingConfigmap: "airflow-project"
+  repositories: []
+
 postgresql:
   enabled: false
-
 redis:
   enabled: false
 
-# Webserver settings
-webserver:
-  defaultUser:
-    enabled: true
-    username: admin
-    password: admin
+externalDatabase:
+  host: "postgres-postgresql.postgres"
+  user: "postgres"
+  password: "postgres"
+  database: "airflow"
+  port: 5432
 
-
-dags:
-  persistence:
-    enabled: false   # Disable the built-in DAGs persistence
-  gitSync:
-    enabled: false
-
-extraVolumeMounts:
-  - name: airflow-repo
-    mountPath: /opt/airflow
-    subPath: ""  # mount entire repo
-
-extraVolumes:
-  - name: airflow-repo
-    persistentVolumeClaim:
-      claimName: airflow-dags-pvc
-
-airflow:
-  config:
-    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
-    AIRFLOW__CORE__PLUGINS_FOLDER: /opt/airflow/plugins
+externalRedis:
+  host: "redis-master.redis"

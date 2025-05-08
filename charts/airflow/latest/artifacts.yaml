@@ -8,26 +8,26 @@ dependencies:
   - postgres
   - redis
 
-#resources:
-#  configmap:
-#    message: "📁 Enter the path to your DAGs folder:"
-#    key: dags.existingConfigmap
-#    name: "airflow-dags"
-#
+resources:
+  configmap:
+    message: "📁 Enter the path to your airflow project:"
+    key: dags.existingConfigmap
+    name: "airflow-project"
+
 #prompts:
 #  - message: "📁 Enter the path to your DAGs folder:"
 #    key: extraVolumes.0.hostPath.path
-#
-#executables:
-#  - name: FernKey
-#    command: openssl rand -base64 32
-#    message: "🔑 Generating a Fernet key for Airflow authentication..."
-#    key: env.0.value
-#  - name: SecretKey
-#    command: openssl rand -base64 32
-#    message: "🔑 Generating a secret key for WebApp..."
-#    key: env.1.value
-#  - name: JWT Secret Key
-#    command: openssl rand -base64 32
-#    message: "🔑 Generate a JWT secret key for Airflow authentication..."
-#    key: auth.jwtSecretKey
+
+executables:
+  - name: Fern Key
+    command: openssl rand -base64 32
+    message: "🔑 Generating a Fernet key for Airflow authentication..."
+    key: auth.fernetKey
+  - name: Secret Key
+    command: openssl rand -base64 32
+    message: "🔑 Generating a secret key for WebApp..."
+    key: auth.secretKey
+  - name: JWT Secret Key
+    command: openssl rand -base64 32
+    message: "🔑 Generate a JWT secret key for Airflow authentication..."
+    key: auth.jwtSecretKey

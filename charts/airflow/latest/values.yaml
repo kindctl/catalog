@@ -1,4 +1,4 @@
-executor: LocalExecutor
+executor: KubernetesExecutor
 
 # External Postgres
 data:
@@ -30,3 +30,25 @@ webserver:
     enabled: true
     username: admin
     password: admin
+
+
+dags:
+  persistence:
+    enabled: false   # Disable the built-in DAGs persistence
+  gitSync:
+    enabled: false
+
+extraVolumeMounts:
+  - name: airflow-repo
+    mountPath: /opt/airflow
+    subPath: ""  # mount entire repo
+
+extraVolumes:
+  - name: airflow-repo
+    persistentVolumeClaim:
+      claimName: airflow-repo-pv
+
+airflow:
+  config:
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+    AIRFLOW__CORE__PLUGINS_FOLDER: /opt/airflow/plugins

@@ -59,7 +59,7 @@ extraVolumeMounts:
 extraVolumes:
   - name: airflow-repo
     persistentVolumeClaim:
-      claimName: airflow-repo-pv
+      claimName: airflow-dags-pv
 
 airflow:
   config:

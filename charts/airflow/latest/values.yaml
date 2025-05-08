@@ -1,6 +1,5 @@
 executor: KubernetesExecutor
 
-
 ingress:
   enabled: true
   ingressClassName: nginx
@@ -12,6 +11,12 @@ ingress:
         - path: /
           pathType: Prefix
 
+
+env:
+  - name: AIRFLOW__CORE__FERNET_KEY
+    value: ""
+  - name: AIRFLOW__WEBSERVER__SECRET_KEY
+    value: ""
 
 # External Postgres
 data:
@@ -59,7 +64,7 @@ extraVolumeMounts:
 extraVolumes:
   - name: airflow-repo
     persistentVolumeClaim:
-      claimName: airflow-dags-pv
+      claimName: airflow-dags-pvc
 
 airflow:
   config:

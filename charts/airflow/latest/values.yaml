@@ -1,47 +1,32 @@
-auth:
-  username: "admin" # Change to your desired admin username
-  password: "admin" # Set a strong password or use existingSecret
-  fernetKey: "" # Generate a Fernet key (e.g., via `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`)
-  secretKey: "" # Generate a secret key for Flask (e.g., via `openssl rand -base64 32`)
-  jwtSecretKey: "" # Generate a JWT secret key if using JWT
+executor: LocalExecutor
 
-# Airflow configuration
-executor: LocalExecutor # Use CeleryExecutor for distributed tasks; change to KubernetesExecutor if needed
-loadExamples: true # Disable example DAGs in production
-#configuration: {} # Customize Airflow settings if needed, e.g., core.dags_folder
-#overrideConfiguration: {} # Override specific settings
-#localSettings: "" # Add custom airflow_local_settings.py if needed
-#existingConfigmap: "" # Use if storing config in a ConfigMap
+# External Postgres
+data:
+  metadataConnection:
+    user: postgres
+    pass: postgres
+    protocol: postgresql
+    host: postgres-postgresql.postgres
+    port: 5432
+    db: airflow
 
-extraVolumeMounts:
-  - name: projects
-    mountPath: /opt/bitnami/airflow
-    readOnly: false
-
-extraVolumes:
-  - name: projects
-    hostPath:
-      path: "" # Path to your local DAGs folder
-
-
-ingress:
+# External Redis
+externalRedis:
   enabled: true
-  hostname: airflow.local
-  ingressClassName: nginx # Or your preferred Ingress controller
+  host: redis-master.redis
+  port: 6379
+  password: admin
 
-#postgresql:
-#  enabled: false
-#
-## External PostgreSQL (if postgresql.enabled=false)
-#externalDatabase:
-#  sqlConnection: postgresql://postgres:postgres@postgres-postgresql.postgres:5432/bitnami_airflow
-#
-## Redis (internal)
-#redis:
-#  enabled: false
-#
-## External Redis (if redis.enabled=false)
-#externalRedis:
-#  host: redis-master.redis
-#  port: 6379
-#  password: admin # Set to your Redis password
+# Disable internal Postgres and Redis
+postgresql:
+  enabled: false
+
+redis:
+  enabled: false
+
+# Webserver settings
+webserver:
+  defaultUser:
+    enabled: true
+    username: admin
+    password: admin

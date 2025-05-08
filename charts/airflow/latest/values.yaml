@@ -8,6 +8,14 @@ auth:
 executor: CeleryExecutor
 loadExamples: false
 
+web:
+  baseUrl: http://airflow.local
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: airflow.local
+
 dags:
   enabled: true
   existingConfigmap: "airflow-project"

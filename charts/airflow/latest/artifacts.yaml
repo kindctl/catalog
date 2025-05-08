@@ -2,7 +2,7 @@ name: airflow
 repo: bitnami
 url: https://charts.bitnami.com/bitnami
 chart: bitnami/airflow
-version: 23.0.1
+version: 23.1.1
 
 dependencies:
   - postgres
@@ -20,7 +20,7 @@ prompts:
 
 executables:
   - name: Fern Key
-    command: python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+    command: openssl rand -base64 32
     message: "🔑 Generating a Fernet key for Airflow authentication..."
     key: auth.fernetKey
   - name: Secret Key

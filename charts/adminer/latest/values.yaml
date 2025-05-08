@@ -1,7 +1,7 @@
 image:
   repository: adminer
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 ingress:
   enabled: true
   className: nginx

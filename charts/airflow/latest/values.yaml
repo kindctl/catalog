@@ -26,19 +26,15 @@ extraVolumes:
 
 ingress:
   enabled: true
-  hostname: "airflow.local" # Your domain
-  ingressClassName: "nginx" # Or your preferred Ingress controller
+  hostname: airflow.local
+  ingressClassName: nginx # Or your preferred Ingress controller
 
 postgresql:
   enabled: false
 
 # External PostgreSQL (if postgresql.enabled=false)
 externalDatabase:
-  host: "postgres-postgresql.postgres"
-  port: 5432
-  user: "postgres"
-  database: "airflow"
-  password: "postgres"
+  sqlConnection: postgresql://postgres:postgres@postgres-postgresql.postgres:5432/bitnami_airflow
 
 # Redis (internal)
 redis:
@@ -46,6 +42,6 @@ redis:
 
 # External Redis (if redis.enabled=false)
 externalRedis:
-  host: "redis-master.redis"
+  host: redis-master.redis
   port: 6379
-  password: "admin" # Set to your Redis password
+  password: admin # Set to your Redis password
